@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+    <py-config>
+        packages = ["numpy", "matplotlib"]
+    </py-config>
+
+
+
+    <title>Tonal Playground</title>
+    <style>
+        body {
+            background: #ffffcc;
+        }
+
+        .notes div {
+            display: flex;
+            justify-content: right;
+            align-items: center;
+        }
+
+        .notes div label {
+            margin-right: 10px;
+        }
+
+        .image-hidden {
+            display: none;
+        }
+
+        input[type="checkbox"] {
+          transform: scale(1.5);
+          margin-right: 5;
+          margin-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tonal Playground</h1>
+    <select id="chordSelector">
+            <option disabled>Choose a chord...</option>
+            <option value="0,0">Octave - add8</option>
+            <option value="0,7">Fifth - 5</option>
+            <option value="0,7,2">Fifth 9th - 5add9</option>
+            <option value="0,4,7">Major - maj</option>
+            <option value="0,4,7,9">Major 6th - maj6</option>
+            <option value="0,4,7,11">Major 7th - maj7</option>
+            <option value="0,4,7,11,2">Major 9th - maj9</option>
+            <option value="0,4,7,2">Add9 - add9</option>
+            <option value="0,3,7">Minor - m</option>
+            <option value="0,3,7,9">Minor 6th - m6</option>
+            <option value="0,3,7,10">Minor 7th - m7</option>
+            <option value="0,3,7,10,2">Minor 9th - m9</option>
+            <option value="0,3,7,10,2,5">Minor 11th - m11</option>
+            <option value="0,4,7,10">Dominant 7th - 7</option>
+            <option value="0,4,7,10,2">Dominant 9th - 9</option>
+            <option value="0,4,7,10,2,5">Dominant 11th - 11</option>
+            <option value="0,4,7,10,2,5,9">Dominant 13th - 13</option>
+            <option value="0,3,6">Diminished - dim</option>
+            <option value="0,3,6,9">Diminished 7th - dim7</option>
+            <option value="0,3,6,10">Half-Diminished - m7b5</option>
+            <option value="0,4,8">Augmented - aug</option>
+            <option value="0,4,8,10">Augmented 7th - aug7</option>
+            <option value="0,2,7">Suspended 2nd - sus2</option>
+            <option value="0,5,7">Suspended 4th - sus4</option>
+
+    </select>
+
+    <select id="rootSelector">
+            <option disabled>Choose a root note...</option>
+            <option value="0">C</option>
+            <option value="1">C#</option>
+            <option value="2">D</option>
+            <option value="3">D#</option>
+            <option value="4">E</option>
+            <option value="5">F</option>
+            <option value="6">F#</option>
+            <option value="7">G</option>
+            <option value="8">G#</option>
+            <option value="9">A</option>
+            <option value="10">A#</option>
+            <option value="11">B</option>
+
+    </select>
+
+
+    <div class="notes" id="noteContainer">
+        <!-- Notes will be populated here -->
+    </div>
+
+
+    <script type="py" src="./main.py"></script>
+
+    <script>
+        window.onload = function() {
+            const chordDropdown = document.getElementById('chordSelector');
+            chordDropdown.selectedIndex = 0;
+            const rootDropdown = document.getElementById('rootSelector');
+            rootDropdown.selectedIndex = 0;
+        }
+
+
+        const chordSelector = document.getElementById('chordSelector');
+        const noteContainer = document.getElementById('noteContainer');
+        const rootSelector = document.getElementById('rootSelector')
+
+        let intervals = ['1st', 'Minor 2nd', 'Major 2nd', 'Minor 3rd', 'Major 3rd', 'Minor 4th', 'Major 4th', 'Perfect 5th', 'Minor 6th', 'Major 6th', 'Minor 7th', 'Major 7th']
+
+
+        chordSelector.addEventListener('change', createChord);
+        rootSelector.addEventListener('change', createChord);
+
+        function createChord() {
+            if (rootSelector.selectedIndex == 0) {
+                rootSelector.selectedIndex = 1;
+            };
+
+            if (chordSelector.selectedIndex == 0) {
+                chordSelector.selectedIndex = 4;
+            };
+            const selectedChord = chordSelector.value.split(",");
+            noteContainer.innerHTML = '';
+
+            let i = 0;
+            selectedChord.forEach(note => {
+                const div = document.createElement('div');
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+
+                checkbox.type = 'checkbox';
+                checkbox.value = note;
+                checkbox.checked = true;
+                checkbox.class = 'image-toggle';
+
+                label.innerHTML = intervals[note];
+                label.append(checkbox);
+
+                div.appendChild(label);
+                div.id = i + "_png";
+                i = i + 1;
+                noteContainer.appendChild(div);
+            });
+            const extraDiv = document.createElement('div');
+            const extraLabel = document.createElement('label');
+            
+            extraDiv.appendChild(extraLabel);
+            extraDiv.id = "layered_png";
+            noteContainer.appendChild(extraDiv);
+        };
+
+    </script>
+</body>
+</html>

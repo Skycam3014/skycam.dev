@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<meta charset="ISO-8859-1">
+<head>
+<link href="/common.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+<title>Links</title>
+</head>
+<body>
+<!--#include virtual="/navbar.html" -->
+<div class="page_content" >
+<h1 style="padding-top:40px;color:#ffffdd;margin-left:10%;">Links</h1>
+<div>
+<br/>
+<p style="margin-right:20%; margin-left:11%;padding-bottom:40px;">
+<a href="https://github.com/skycam3014">My Github</a>
+</br>
+</br>
+<a href="https://mtdecloud3.infinitecampus.org/campus/portal/whitefish.jsp">WHS Gradebook</a>
+</br>
+</br>
+<a href="https://www.ilearnacademy.net/uploads/3/9/2/2/3922443/precalculus__edition_5f.pdf">Blitzer Precalculus</a>
+</br>
+</br>
+<a href="https://bim.easyaccessmaterials.com">Common Core Math</a>
+</p>
+</div>
+</div>
+</body>
+</html>

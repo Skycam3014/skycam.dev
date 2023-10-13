@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+#bdy {
+	background-color:#0000ff;
+	font-size:14px;
+	color:#666;
+}
+
+#s1 {
+	background-color:#777777;
+	width:50%;
+	margin-right:auto;
+	margin-left:auto;
+	height:50%;
+}
