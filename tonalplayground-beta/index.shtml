@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 
 
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <link rel="stylesheet" href="/pyscript.css" />
+    <script defer src="/pyscript.js"></script>
+	
+	<link href="/common.css" rel="stylesheet" type="text/css">
+
 
     <py-config>
         packages = ["numpy", "matplotlib"]
@@ -17,10 +21,6 @@
 
     <title>Tonal Playground</title>
     <style>
-        body {
-            background: #ffffcc;
-        }
-
         .notes div {
             display: flex;
             justify-content: right;
@@ -44,8 +44,10 @@
 </head>
 
 <body>
-    <h1>Tonal Playground</h1>
-    <select id="chordSelector">
+	<!--#include virtual="/navbar.html" -->
+	<div class="page_content">
+    <h1 style="margin-top:40px; margin-left:10%;">Tonal Playground</h1>
+    <select id="chordSelector" style="margin-top:20px; margin-left:12%; margin-bottom:40px">
             <option disabled>Choose a chord...</option>
             <option value="0,0">Octave - add8</option>
             <option value="0,7">Fifth - 5</option>
@@ -74,7 +76,7 @@
 
     </select>
 
-    <select id="rootSelector">
+    <select id="rootSelector" style="margin-left:10px">
             <option disabled>Choose a root note...</option>
             <option value="0">C</option>
             <option value="1">C#</option>
@@ -91,8 +93,8 @@
 
     </select>
 
-
-    <div class="notes" id="noteContainer">
+	</div>
+    <div class="notes" id="noteContainer" style="margin-top:40px">
         <!-- Notes will be populated here -->
     </div>
 

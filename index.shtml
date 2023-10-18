@@ -10,10 +10,10 @@
 <body>
 <!--#include virtual="/navbar.html" -->
 <div class="page_content">
-<h1 style="color:#ffffdd; padding-left:46%; padding-right:50%; padding-top:40px;">Home</h1>
+<h1 style="padding-left:46%; padding-right:50%; padding-top:40px;">Home</h1>
 </br>
 </br>
-<center><p style="color:#ffffdd; font-size:20px; padding-bottom:40px; padding-left:40px; padding-right:40px;">Welcome to skycam.dev. Feel free to explore my site, there's some to see now and I'm adding more every day!</p></center>
+<center><p style="font-size:20px; padding-bottom:40px; padding-left:40px; padding-right:40px;">Welcome to skycam.dev. Feel free to explore my site, there's some to see now and I'm adding more every day!</p></center>
 </div>
 </body>
 </html>

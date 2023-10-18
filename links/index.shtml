@@ -9,7 +9,7 @@
 <body>
 <!--#include virtual="/navbar.html" -->
 <div class="page_content" >
-<h1 style="padding-top:40px;color:#ffffdd;margin-left:10%;">Links</h1>
+<h1 style="padding-top:40px; margin-left:10%;">Links</h1>
 <div>
 <br/>
 <p style="margin-right:20%; margin-left:11%;padding-bottom:40px;">

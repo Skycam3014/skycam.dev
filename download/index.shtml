@@ -9,10 +9,10 @@
 <body>
 <!--#include virtual="/navbar.html" -->
 <div class="page_content">
-<h1 style="color:#ffffdd; padding-left:46%; padding-right:50%; padding-top:40px;">Downloads</h1>
+<h1 style="padding-left:46%; padding-right:50%; padding-top:40px;">Downloads</h1>
 </br>
 </br>
-<center><p style="color:#ffffdd; font-size:20px; padding-bottom:40px; padding-left:40px; padding-right:40px;">All downloads provided by this site are provided as is without implication of support.</p></center>
+<center><p style="font-size:20px; padding-bottom:40px; padding-left:40px; padding-right:40px;">All downloads provided by this site are provided as is without implication of support.</p></center>
 <center>
 <a href="/downloads/" style="margin-top:50px;">Continue</br>&nbsp;</a>
 </center>
