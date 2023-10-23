@@ -46,7 +46,9 @@
 <body>
 	<!--#include virtual="/navbar.html" -->
 	<div class="page_content">
-    <h1 style="margin-top:40px; margin-left:10%;">Tonal Playground</h1>
+    <h1 class="page_title">Tonal Playground</h1>
+	<hr class="title_bar">
+
     <select id="chordSelector" style="margin-top:20px; margin-left:12%; margin-bottom:40px">
             <option disabled>Choose a chord...</option>
             <option value="0,0">Octave - add8</option>
