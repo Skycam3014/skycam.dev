@@ -6,6 +6,7 @@ import asyncio
 from pyodide.ffi import create_proxy
 from js import document, console, Uint8Array, window, File
 from js import addEventListener
+from js import root, constructedChord
 
 def generate_waveforms(event):
 
@@ -43,14 +44,14 @@ def generate_waveforms(event):
 
   chromatic_pitches = [pitch*2**4 for pitch in chromatic_base_pitches]
 
-  chord_type = (document.getElementById("chordSelector").selectedIndex) - 1
-  root = chromatic_scale[(document.getElementById("rootSelector").selectedIndex) - 1]
+  #chord_type = (document.getElementById("chordSelector").selectedIndex) - 1
 
   frequencies = []
 
-  chord_type = int(chord_type)
+  #chord_type = int(chord_type)
   root = chromatic_scale.index(root)
-  voicing = [int(note) for note in chords[chord_type][1].split(' ')]
+  #voicing = [int(note) for note in chords[chord_type][1].split(' ')]
+  voicing = constructedChord
   for i, scale_index in enumerate(voicing):
     if i != 0 and scale_index <= max(voicing[:i]):
       frequencies.append(chromatic_pitches[root]*2*harmonic_ratios[scale_index])
@@ -123,5 +124,5 @@ def generate_waveforms(event):
 def setup():
   generate_waveforms_proxy = create_proxy(generate_waveforms)
   document.getElementById("chordSelector").addEventListener("change", generate_waveforms_proxy)
-  document.getElementById("rootSelector").addEventListener("change", generate_waveforms_proxy)
+  document.getElementById("noteSelector").addEventListener("change", generate_waveforms_proxy)
 setup()

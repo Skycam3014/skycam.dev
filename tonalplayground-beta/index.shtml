@@ -40,6 +40,12 @@
           margin-right: 5;
           margin-left: 15px;
         }
+
+        .selector {
+            margin-top: 20px;
+            margin-bottom: 40px;
+            margin-left:10px
+        }
     </style>
 </head>
 
@@ -47,9 +53,10 @@
 	<!--#include virtual="/navbar.html" -->
 	<h1 class="page_title">Tonal Playground</h1>
 	<hr class="title_bar">
-	<div class="page_content">
-    <select id="chordSelector" style="margin-top:20px; margin-left:12%; margin-bottom:40px">
+	<div class="page_content" id="page_content">
+    <select class="selector" id="chordSelector" style="margin-left: 12%;">
             <option disabled>Choose a chord...</option>
+            <option value="">Create Custom</option>
             <option value="0,0">Octave - add8</option>
             <option value="0,7">Fifth - 5</option>
             <option value="0,7,2">Fifth 9th - 5add9</option>
@@ -77,7 +84,7 @@
 
     </select>
 
-    <select id="rootSelector" style="margin-left:10px">
+    <select class="selector" id="noteSelector">
             <option disabled>Choose a root note...</option>
             <option value="0">C</option>
             <option value="1">C#</option>
@@ -96,44 +103,56 @@
 
 	</div>
     <div class="notes" id="noteContainer" style="margin-top:40px">
-        <!-- Notes will be populated here -->
+
     </div>
 
 
     <script type="py" src="./main.py"></script>
 
     <script>
-        window.onload = function() {
-            const chordDropdown = document.getElementById('chordSelector');
-            chordDropdown.selectedIndex = 0;
-            const rootDropdown = document.getElementById('rootSelector');
-            rootDropdown.selectedIndex = 0;
-        }
-
 
         const chordSelector = document.getElementById('chordSelector');
+        const noteSelector = document.getElementById('noteSelector');
         const noteContainer = document.getElementById('noteContainer');
-        const rootSelector = document.getElementById('rootSelector')
-
-        let intervals = ['1st', 'Minor 2nd', 'Major 2nd', 'Minor 3rd', 'Major 3rd', 'Minor 4th', 'Major 4th', 'Perfect 5th', 'Minor 6th', 'Major 6th', 'Minor 7th', 'Major 7th']
 
 
-        chordSelector.addEventListener('change', createChord);
-        rootSelector.addEventListener('change', createChord);
+        window.onload = function() {
+            chordSelector.selectedIndex = 0;
+            noteSelector.selectedIndex = 0;
+        }
 
-        function createChord() {
-            if (rootSelector.selectedIndex == 0) {
-                rootSelector.selectedIndex = 1;
+        let intervals = ['Root', 'Minor 2nd', 'Major 2nd', 'Minor 3rd', 'Major 3rd', 'Minor 4th', 'Major 4th', 'Perfect 5th', 'Minor 6th', 'Major 6th', 'Minor 7th', 'Major 7th'];
+
+
+        chordSelector.addEventListener('change', selectorTriggered);
+        noteSelector.addEventListener('change', selectorTriggered);
+
+
+        function selectorTriggered() {
+            if (chordSelector.selectedIndex != 1) {
+                let addButton = document.getElementById('addNoteButton');
+                if (addButton) {addButton.remove()};
+                if (noteSelector.selectedIndex == 0) {noteSelector.selectedIndex = 1;};
+                createChord(chordSelector.value.split(","), noteSelector.selectedIndex);
+                
             };
 
-            if (chordSelector.selectedIndex == 0) {
-                chordSelector.selectedIndex = 4;
+            if (chordSelector.selectedIndex == 1) {
+                if (!document.getElementById('addNoteButton')) {
+                    const addNoteButton = document.createElement('button');
+                    addNoteButton.className = 'selector';
+                    addNoteButton.id = 'addNoteButton';
+                    addNoteButton.innerHTML = 'Add Note';
+                    document.getElementById('page_content').appendChild(addNoteButton);
+                    addNoteButton.addEventListener('click', addNote);
+                };
             };
-            const selectedChord = chordSelector.value.split(",");
+        };
+
+        function createChord(constructedChord, root) {
             noteContainer.innerHTML = '';
-
             let i = 0;
-            selectedChord.forEach(note => {
+            constructedChord.forEach(note => {
                 const div = document.createElement('div');
                 const label = document.createElement('label');
                 const checkbox = document.createElement('input');
@@ -151,12 +170,17 @@
                 i = i + 1;
                 noteContainer.appendChild(div);
             });
-            const extraDiv = document.createElement('div');
-            const extraLabel = document.createElement('label');
+            div = document.createElement('div');
+            label = document.createElement('label');
             
-            extraDiv.appendChild(extraLabel);
-            extraDiv.id = "layered_png";
-            noteContainer.appendChild(extraDiv);
+            div.appendChild(label);
+            div.id = "layered_png";
+            noteContainer.appendChild(div);
+        };
+
+
+        function addNote() {
+            console.log('Button Pressed');
         };
 
     </script>
