@@ -57,7 +57,7 @@
     <select class="selector" id="chordSelector" style="margin-left: 12%;">
             <option disabled>Choose a chord...</option>
             <option value="">Create Custom</option>
-            <option value="0,0">Octave - add8</option>
+            <option value="0,0">Octave - 8</option>
             <option value="0,7">Fifth - 5</option>
             <option value="0,7,2">Fifth 9th - 5add9</option>
             <option value="0,4,7">Major - maj</option>
@@ -85,59 +85,66 @@
     </select>
 
     <select class="selector" id="noteSelector">
-            <option disabled>Choose a root note...</option>
+            <option disabled>Choose a root...</option>
             <option value="0">C</option>
-            <option value="1">C#</option>
+            <option value="1">C#/Db</option>
             <option value="2">D</option>
-            <option value="3">D#</option>
+            <option value="3">D#/Eb</option>
             <option value="4">E</option>
             <option value="5">F</option>
-            <option value="6">F#</option>
+            <option value="6">F#/Gb</option>
             <option value="7">G</option>
-            <option value="8">G#</option>
+            <option value="8">G#/Ab</option>
             <option value="9">A</option>
-            <option value="10">A#</option>
+            <option value="10">A#/Bb</option>
             <option value="11">B</option>
 
     </select>
 
+    <button onclick="toggleIntonation()" class='selector'>Toggle Intonation</button>
+
 	</div>
     <div class="notes" id="noteContainer" style="margin-top:40px">
-
     </div>
 
-
-    <script type="py" src="./main.py"></script>
-
     <script>
-
         const chordSelector = document.getElementById('chordSelector');
         const noteSelector = document.getElementById('noteSelector');
         const noteContainer = document.getElementById('noteContainer');
-
+        var root = '';
+        var voicing = '';
+        var pureIntonation = 1
 
         window.onload = function() {
             chordSelector.selectedIndex = 0;
             noteSelector.selectedIndex = 0;
         }
 
-        let intervals = ['Root', 'Minor 2nd', 'Major 2nd', 'Minor 3rd', 'Major 3rd', 'Minor 4th', 'Major 4th', 'Perfect 5th', 'Minor 6th', 'Major 6th', 'Minor 7th', 'Major 7th'];
-
+        let intervals = ['Tonic', 'Minor 2nd', 'Major 2nd', 'Minor 3rd', 'Major 3rd', 'Minor 4th', 'Major 4th', 'Perfect 5th', 'Minor 6th', 'Major 6th', 'Minor 7th', 'Major 7th'];
 
         chordSelector.addEventListener('change', selectorTriggered);
         noteSelector.addEventListener('change', selectorTriggered);
 
+        const createChord = new CustomEvent('createChord', {});
 
         function selectorTriggered() {
             if (chordSelector.selectedIndex != 1) {
                 let addButton = document.getElementById('addNoteButton');
                 if (addButton) {addButton.remove()};
+                let resetButton = document.getElementById('resetButton');
+                if (resetButton) {resetButton.remove()}
                 if (noteSelector.selectedIndex == 0) {noteSelector.selectedIndex = 1;};
-                createChord(chordSelector.value.split(","), noteSelector.selectedIndex);
+                root = noteSelector.value;
+                voicing = chordSelector.value.split(",");
+                prepareChord(voicing);
+                document.dispatchEvent(createChord);
+                voicing = '';
                 
             };
 
+
             if (chordSelector.selectedIndex == 1) {
+                if (voicing == '') {noteContainer.innerHTML = ''};
                 if (!document.getElementById('addNoteButton')) {
                     const addNoteButton = document.createElement('button');
                     addNoteButton.className = 'selector';
@@ -146,13 +153,21 @@
                     document.getElementById('page_content').appendChild(addNoteButton);
                     addNoteButton.addEventListener('click', addNote);
                 };
+                if (!document.getElementById('resetButton')) {
+                    const resetButton = document.createElement('button');
+                    resetButton.className = 'selector';
+                    resetButton.id = 'resetButton';
+                    resetButton.innerHTML = 'Reset';
+                    document.getElementById('page_content').appendChild(resetButton);
+                    resetButton.addEventListener('click', resetCustom)
+                };
             };
         };
 
-        function createChord(constructedChord, root) {
+        function prepareChord(chordVoicing) {
             noteContainer.innerHTML = '';
             let i = 0;
-            constructedChord.forEach(note => {
+            chordVoicing.forEach(note => {
                 const div = document.createElement('div');
                 const label = document.createElement('label');
                 const checkbox = document.createElement('input');
@@ -180,9 +195,41 @@
 
 
         function addNote() {
-            console.log('Button Pressed');
+            if (noteSelector.selectedIndex != 0) {
+                if (voicing != '') {
+                    voicing = voicing.join(',')
+                    voicing += ','
+                };
+                if (voicing == '') {root = noteSelector.value};
+
+                voicing += (noteSelector.value - root + 12)%12;
+                voicing = voicing.split(',');
+                prepareChord(voicing);
+                document.dispatchEvent(createChord);
+            };
         };
+            function resetCustom() {
+                noteContainer.innerHTML = '';
+                noteSelector.selectedIndex = 0;
+                voicing = ''
+            };
+
+            function toggleIntonation () {
+                pureIntonation = (pureIntonation + 1)%2;
+                if (chordSelector.selectedIndex != 1) {
+                    voicing = chordSelector.value.split(',');
+                    prepareChord(voicing);
+                    document.dispatchEvent(createChord);
+                    voicing = '';
+                };
+                if (chordSelector.selectedIndex == 1) {
+                    prepareChord(voicing);
+                    document.dispatchEvent(createChord);
+                };
+                
+            };
 
     </script>
+    <script type="py" src="./main.py"></script>
 </body>
 </html>
