@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/pyscript.css" />
     <script defer src="/pyscript.js"></script>
 	
+    <script src="http://unpkg.com/tone"></script>
+
 	<link href="/common.css" rel="stylesheet" type="text/css">
 
 
@@ -113,7 +115,9 @@
         const noteContainer = document.getElementById('noteContainer');
         var root = '';
         var voicing = '';
-        var pureIntonation = 1
+        var pureIntonation = 1;
+        var chord_pitches = [];
+        var isChordPlaying = false;
 
         window.onload = function() {
             chordSelector.selectedIndex = 0;
@@ -126,6 +130,10 @@
         noteSelector.addEventListener('change', selectorTriggered);
 
         const createChord = new CustomEvent('createChord', {});
+
+        function createObject(object, variableName){
+            globalThis[variableName] = object;
+        };
 
         function selectorTriggered() {
             if (chordSelector.selectedIndex != 1) {
@@ -145,7 +153,7 @@
 
             if (chordSelector.selectedIndex == 1) {
                 if (voicing == '') {noteContainer.innerHTML = ''};
-                if (!document.getElementById('addNoteButton')) {
+                if (!document   .getElementById('addNoteButton')) {
                     const addNoteButton = document.createElement('button');
                     addNoteButton.className = 'selector';
                     addNoteButton.id = 'addNoteButton';
@@ -171,6 +179,7 @@
                 const div = document.createElement('div');
                 const label = document.createElement('label');
                 const checkbox = document.createElement('input');
+                const playButton = document.createElement('button');
 
                 checkbox.type = 'checkbox';
                 checkbox.value = note;
@@ -187,7 +196,13 @@
             });
             div = document.createElement('div');
             label = document.createElement('label');
+            playButton = document.createElement('button')
             
+            playButton.id = 'play_chord';
+            playButton.innerHTML = 'Play';
+            playButton.addEventListener('click', playChord)
+            label.append(playButton);
+
             div.appendChild(label);
             div.id = "layered_png";
             noteContainer.appendChild(div);
@@ -208,26 +223,70 @@
                 document.dispatchEvent(createChord);
             };
         };
-            function resetCustom() {
-                noteContainer.innerHTML = '';
-                noteSelector.selectedIndex = 0;
-                voicing = ''
+        function resetCustom() {
+            noteContainer.innerHTML = '';
+            noteSelector.selectedIndex = 0;
+            voicing = ''
+        };
+
+        function toggleIntonation () {
+
+            if (isChordPlaying) {
+                chord_pitches = frequencies;
+                let length = chord_pitches.length;
+                let now = Tone.now();
+                for (let i = 0; i < length; i++) {
+                    synth.triggerRelease(chord_pitches.get(i), now);
+                    console.log('Triggering Release for ' + chord_pitches.get(i))
+                };
             };
 
-            function toggleIntonation () {
-                pureIntonation = (pureIntonation + 1)%2;
-                if (chordSelector.selectedIndex != 1) {
-                    voicing = chordSelector.value.split(',');
-                    prepareChord(voicing);
-                    document.dispatchEvent(createChord);
-                    voicing = '';
-                };
-                if (chordSelector.selectedIndex == 1) {
-                    prepareChord(voicing);
-                    document.dispatchEvent(createChord);
-                };
-                
+            pureIntonation = (pureIntonation + 1)%2;
+            if (chordSelector.selectedIndex != 1) {
+                voicing = chordSelector.value.split(',');
+                prepareChord(voicing);
+                document.dispatchEvent(createChord);
+                voicing = '';
             };
+            if (chordSelector.selectedIndex == 1) {
+                prepareChord(voicing);
+                document.dispatchEvent(createChord);
+            };
+            
+            if (isChordPlaying) {
+                chord_pitches = frequencies;
+                let length = chord_pitches.length;
+                let now = Tone.now();
+                for (let i = 0; i < length; i++) {
+                    synth.triggerAttack(chord_pitches.get(i), now);
+                    console.log('Triggering Attack for ' + chord_pitches.get(i))
+                };
+            };
+
+        };
+
+        var synth = new Tone.PolySynth(Tone.Synth).toDestination();
+        function playChord() {
+            Tone.start();
+            let now = Tone.now();
+            chord_pitches = frequencies;
+            let length = chord_pitches.length;
+
+            if (isChordPlaying) {
+                isChordPlaying = false;
+                for (let i = 0; i < length; i++) {
+                    synth.triggerRelease(chord_pitches.get(i), now);
+                    console.log('Triggering Release for ' + chord_pitches.get(i))
+                };
+            } else if (!isChordPlaying) {
+                isChordPlaying = true;
+                for (let i = 0; i < length; i++) {
+                    synth.triggerAttack(chord_pitches.get(i), now);
+                    console.log('Triggering Attack for ' + chord_pitches.get(i))
+                };
+            };
+            
+        };
 
     </script>
     <script type="py" src="./main.py"></script>

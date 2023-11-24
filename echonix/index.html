@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echonix Authentication</title>
+</head>
+<body>
+    <div id="codeOutput">Loading...</div>
+    <button id="copyButton">Copy to Clipboard</button>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code') || 'No code provided.';
+        document.getElementById('codeOutput').textContent = code;
+
+        document.getElementById('copyButton').addEventListener('click', function() {navigator.clipboard.writeText(code)});
+    </script>
+</body>
+</html>

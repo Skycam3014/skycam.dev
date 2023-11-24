@@ -9,6 +9,7 @@ from js import document, console, Uint8Array, window, File
 from js import addEventListener
 
 def generate_waveforms(event):
+
   chords = [
       ['Octave', '0 0', '8'],
       ['Fifth', '0 7', '5'],
@@ -46,7 +47,7 @@ def generate_waveforms(event):
 
   chord_type = (document.getElementById("chordSelector").selectedIndex) - 2
 
-  frequencies = []
+  frequencies = []  
 
   pureIntonation = int(js.pureIntonation)
   root = int(js.root)
@@ -70,8 +71,8 @@ def generate_waveforms(event):
           frequencies.append(chromatic_pitches[(root+scale_index)%12]*2)
         else: 
           frequencies.append(chromatic_pitches[(root+scale_index)])
-
-
+  js.createObject(create_proxy(frequencies), "frequencies")
+  #js.chord_pitches = frequencies
   #print(f'\n{chords[chord_type][0]} | {chromatic_scale[root]}{chords[chord_type][2]}')
   #print([chromatic_scale[((int(i)+root)%len(chromatic_scale))] for i in voicing])
   #print(voicing)
