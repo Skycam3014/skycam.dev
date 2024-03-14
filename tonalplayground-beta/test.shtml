@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correct Checkbox and Image Alignment</title>
+    <style>
+        .note {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .note img {
+            margin-left: 10px; /* Adds spacing between the checkbox and the image */
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .column {
+            flex: 1;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Dynamically Added Checkboxes on the Left</h2>
+<div class="container">
+    <div class="column"></div>
+    <div id="content" class="column"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const content = document.getElementById('content');
+
+        // Example options to add
+        const options = [
+            { id: 'check1', label: 'Option 1', imageUrl: 'https://via.placeholder.com/100' },
+            { id: 'check2', label: 'Option 2', imageUrl: 'https://via.placeholder.com/100' }
+        ];
+
+        options.forEach((option, index) => {
+            const note = document.createElement('div');
+            note.className = 'note';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = option.id;
+
+            const img = document.createElement('img');
+            const imgDiv = document.createElement('img');
+            img.src = option.imageUrl;
+
+            //imgDiv.appendChild(img);
+            note.appendChild(checkbox);
+            
+
+            content.appendChild(note);
+            note.appendChild(img);
+        });
+    });
+</script>
+
+</body>
+</html>

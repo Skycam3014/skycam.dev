@@ -96,7 +96,7 @@ def generate_waveforms(event):
     if pureIntonation == 1:
       plt.title(f"{[intervals[((int(i))%len(intervals))] for i in voicing][freq[0]]} | {[chromatic_scale[((int(i)+root)%len(chromatic_scale))] for i in voicing][freq[0]]} | {round(freq[1], 2)}Hz | {adjustments[voicing[freq[0]]%12]} Cents")
     elif pureIntonation == 0:
-      plt.title(f"{[voicing[((int(i)+root)%len(voicing))] for i in voicing][freq[0]]} | {[chromatic_scale[((int(i)+root)%len(chromatic_scale))] for i in voicing][freq[0]]} | {round(freq[1], 2)}Hz | +0.0 Cents")
+      plt.title(f"{[intervals[((int(i))%len(intervals))] for i in voicing][freq[0]]} | {[chromatic_scale[((int(i)+root)%len(chromatic_scale))] for i in voicing][freq[0]]} | {round(freq[1], 2)}Hz | +0.0 Cents")
     plt.ylim(-1.1, 1.1)
 
     plt.yticks([])
