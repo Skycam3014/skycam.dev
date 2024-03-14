@@ -23,14 +23,25 @@
 
     <title>Tonal Playground</title>
     <style>
-        .notes div {
+        .container {
             display: flex;
-            justify-content: right;
-            align-items: center;
+
         }
 
-        .notes div label {
-            margin-right: 10px;
+        .column {
+            flex: 1;
+            text-align: center;
+        }
+
+        .notes {
+            overflow-y: scroll;
+            margin-top:40px;
+            margin-right:2%;
+        }
+
+        .note {
+            display: flex;
+            text-align: right;
         }
 
         .image-hidden {
@@ -39,8 +50,8 @@
 
         input[type="checkbox"] {
           transform: scale(1.5);
-          margin-right: 5;
-          margin-left: 15px;
+          margin-right: 5px;
+          margin-top: 15px;
         }
 
         .selector {
@@ -48,6 +59,7 @@
             margin-bottom: 40px;
             margin-left:10px
         }
+
     </style>
 </head>
 
@@ -55,239 +67,252 @@
 	<!--#include virtual="/navbar.html" -->
 	<h1 class="page_title">Tonal Playground</h1>
 	<hr class="title_bar">
-	<div class="page_content" id="page_content">
-    <select class="selector" id="chordSelector" style="margin-left: 12%;">
-            <option disabled>Choose a chord...</option>
-            <option value="">Create Custom</option>
-            <option value="0,0">Octave - 8</option>
-            <option value="0,7">Fifth - 5</option>
-            <option value="0,7,2">Fifth 9th - 5add9</option>
-            <option value="0,4,7">Major - maj</option>
-            <option value="0,4,7,9">Major 6th - maj6</option>
-            <option value="0,4,7,11">Major 7th - maj7</option>
-            <option value="0,4,7,11,2">Major 9th - maj9</option>
-            <option value="0,4,7,2">Add9 - add9</option>
-            <option value="0,3,7">Minor - m</option>
-            <option value="0,3,7,9">Minor 6th - m6</option>
-            <option value="0,3,7,10">Minor 7th - m7</option>
-            <option value="0,3,7,10,2">Minor 9th - m9</option>
-            <option value="0,3,7,10,2,5">Minor 11th - m11</option>
-            <option value="0,4,7,10">Dominant 7th - 7</option>
-            <option value="0,4,7,10,2">Dominant 9th - 9</option>
-            <option value="0,4,7,10,2,5">Dominant 11th - 11</option>
-            <option value="0,4,7,10,2,5,9">Dominant 13th - 13</option>
-            <option value="0,3,6">Diminished - dim</option>
-            <option value="0,3,6,9">Diminished 7th - dim7</option>
-            <option value="0,3,6,10">Half-Diminished - m7b5</option>
-            <option value="0,4,8">Augmented - aug</option>
-            <option value="0,4,8,10">Augmented 7th - aug7</option>
-            <option value="0,2,7">Suspended 2nd - sus2</option>
-            <option value="0,5,7">Suspended 4th - sus4</option>
 
-    </select>
 
-    <select class="selector" id="noteSelector">
-            <option disabled>Choose a root...</option>
-            <option value="0">C</option>
-            <option value="1">C#/Db</option>
-            <option value="2">D</option>
-            <option value="3">D#/Eb</option>
-            <option value="4">E</option>
-            <option value="5">F</option>
-            <option value="6">F#/Gb</option>
-            <option value="7">G</option>
-            <option value="8">G#/Ab</option>
-            <option value="9">A</option>
-            <option value="10">A#/Bb</option>
-            <option value="11">B</option>
+    <div id="control" style="width:100%">
+        <select class="selector" id="chordSelector" style="margin-left: 12%;">
+                <option disabled>Choose a chord...</option>
+                <option value="">Create Custom</option>
+                <option value="0,0">Octave - 8</option>
+                <option value="0,7">Fifth - 5</option>
+                <option value="0,7,2">Fifth 9th - 5add9</option>
+                <option value="0,4,7">Major - maj</option>
+                <option value="0,4,7,9">Major 6th - maj6</option>
+                <option value="0,4,7,11">Major 7th - maj7</option>
+                <option value="0,4,7,11,2">Major 9th - maj9</option>
+                <option value="0,4,7,2">Add9 - add9</option>
+                <option value="0,3,7">Minor - m</option>
+                <option value="0,3,7,9">Minor 6th - m6</option>
+                <option value="0,3,7,10">Minor 7th - m7</option>
+                <option value="0,3,7,10,2">Minor 9th - m9</option>
+                <option value="0,3,7,10,2,5">Minor 11th - m11</option>
+                <option value="0,4,7,10">Dominant 7th - 7</option>
+                <option value="0,4,7,10,2">Dominant 9th - 9</option>
+                <option value="0,4,7,10,2,5">Dominant 11th - 11</option>
+                <option value="0,4,7,10,2,5,9">Dominant 13th - 13</option>
+                <option value="0,3,6">Diminished - dim</option>
+                <option value="0,3,6,9">Diminished 7th - dim7</option>
+                <option value="0,3,6,10">Half-Diminished - m7b5</option>
+                <option value="0,4,8">Augmented - aug</option>
+                <option value="0,4,8,10">Augmented 7th - aug7</option>
+                <option value="0,2,7">Suspended 2nd - sus2</option>
+                <option value="0,5,7">Suspended 4th - sus4</option>
 
-    </select>
+        </select>
 
-    <button onclick="toggleIntonation()" class='selector'>Toggle Intonation</button>
+        <select class="selector" id="noteSelector">
+                <option disabled>Choose a root...</option>
+                <option value="0">C</option>
+                <option value="1">C#/Db</option>
+                <option value="2">D</option>
+                <option value="3">D#/Eb</option>
+                <option value="4">E</option>
+                <option value="5">F</option>
+                <option value="6">F#/Gb</option>
+                <option value="7">G</option>
+                <option value="8">G#/Ab</option>
+                <option value="9">A</option>
+                <option value="10">A#/Bb</option>
+                <option value="11">B</option>
 
-	</div>
-    <div class="notes" id="noteContainer" style="margin-top:40px">
+        </select>
+
+        <button onclick="toggleIntonation()" class='selector'>Toggle Intonation</button>
+        <button onclick="playChord()" class='selector'>Play</button>
+
     </div>
 
+    <div class="container">
+        <div class="column" id="layerContainer"></div>
+        <div class="column" id="noteContainer"></div>
+    </div>
+
+
     <script>
-        const chordSelector = document.getElementById('chordSelector');
-        const noteSelector = document.getElementById('noteSelector');
-        const noteContainer = document.getElementById('noteContainer');
-        var root = '';
-        var voicing = '';
-        var pureIntonation = 1;
-        var chord_pitches = [];
-        var isChordPlaying = false;
+        //document.addEventListener('DOMContentLoaded', function() {
+            const chordSelector = document.getElementById('chordSelector');
+            const noteSelector = document.getElementById('noteSelector');
+            const noteContainer = document.getElementById('noteContainer');
+            var root = '';
+            var voicing = '';
+            var pureIntonation = 1;
+            var chord_pitches = [];
+            var isChordPlaying = false;
 
-        window.onload = function() {
-            chordSelector.selectedIndex = 0;
-            noteSelector.selectedIndex = 0;
-        }
+            window.onload = function() {
+                chordSelector.selectedIndex = 0;
+                noteSelector.selectedIndex = 0;
+            }
 
-        let intervals = ['Tonic', 'Minor 2nd', 'Major 2nd', 'Minor 3rd', 'Major 3rd', 'Minor 4th', 'Major 4th', 'Perfect 5th', 'Minor 6th', 'Major 6th', 'Minor 7th', 'Major 7th'];
+            let intervals = ['Tonic', 'Minor 2nd', 'Major 2nd', 'Minor 3rd', 'Major 3rd', 'Perfect 4th', 'Aug 4th / Dim 5th', 'Perfect 5th', 'Minor 6th', 'Major 6th', 'Minor 7th', 'Major 7th'];
 
-        chordSelector.addEventListener('change', selectorTriggered);
-        noteSelector.addEventListener('change', selectorTriggered);
+            chordSelector.addEventListener('change', selectorTriggered);
+            noteSelector.addEventListener('change', selectorTriggered);
 
-        const createChord = new CustomEvent('createChord', {});
+            const createChord = new CustomEvent('createChord', {});
 
-        function createObject(object, variableName){
-            globalThis[variableName] = object;
-        };
-
-        function selectorTriggered() {
-            if (chordSelector.selectedIndex != 1) {
-                let addButton = document.getElementById('addNoteButton');
-                if (addButton) {addButton.remove()};
-                let resetButton = document.getElementById('resetButton');
-                if (resetButton) {resetButton.remove()}
-                if (noteSelector.selectedIndex == 0) {noteSelector.selectedIndex = 1;};
-                root = noteSelector.value;
-                voicing = chordSelector.value.split(",");
-                prepareChord(voicing);
-                document.dispatchEvent(createChord);
-                voicing = '';
-                
+            function createObject(object, variableName){
+                globalThis[variableName] = object;
             };
 
-
-            if (chordSelector.selectedIndex == 1) {
-                if (voicing == '') {noteContainer.innerHTML = ''};
-                if (!document   .getElementById('addNoteButton')) {
-                    const addNoteButton = document.createElement('button');
-                    addNoteButton.className = 'selector';
-                    addNoteButton.id = 'addNoteButton';
-                    addNoteButton.innerHTML = 'Add Note';
-                    document.getElementById('page_content').appendChild(addNoteButton);
-                    addNoteButton.addEventListener('click', addNote);
+            function selectorTriggered() {
+                if (chordSelector.selectedIndex != 1) {
+                    let addButton = document.getElementById('addNoteButton');
+                    if (addButton) {addButton.remove()};
+                    let resetButton = document.getElementById('resetButton');
+                    if (resetButton) {resetButton.remove()}
+                    if (noteSelector.selectedIndex == 0) {noteSelector.selectedIndex = 1;};
+                    root = noteSelector.value;
+                    voicing = chordSelector.value.split(",");
+                    prepareChord(voicing);
+                    document.dispatchEvent(createChord);
+                    voicing = '';
+                    
                 };
-                if (!document.getElementById('resetButton')) {
-                    const resetButton = document.createElement('button');
-                    resetButton.className = 'selector';
-                    resetButton.id = 'resetButton';
-                    resetButton.innerHTML = 'Reset';
-                    document.getElementById('page_content').appendChild(resetButton);
-                    resetButton.addEventListener('click', resetCustom)
+
+                if (chordSelector.selectedIndex == 1) {
+                    if (voicing == '') {noteContainer.innerHTML = ''; layerContainer.innerHTML = ''};
+                    if (!document   .getElementById('addNoteButton')) {
+                        let addNoteButton = document.createElement('button');
+                        addNoteButton.className = 'selector';
+                        addNoteButton.id = 'addNoteButton';
+                        addNoteButton.innerHTML = 'Add Note';
+                        document.getElementById('control').appendChild(addNoteButton);
+                        addNoteButton.addEventListener('click', addNote);
+                    };
+                    if (!document.getElementById('resetButton')) {
+                        let resetButton = document.createElement('button');
+                        resetButton.className = 'selector';
+                        resetButton.id = 'resetButton';
+                        resetButton.innerHTML = 'Reset';
+                        document.getElementById('control').appendChild(resetButton);
+                        resetButton.addEventListener('click', resetCustom)
+                    };
                 };
             };
-        };
 
-        function prepareChord(chordVoicing) {
-            noteContainer.innerHTML = '';
-            let i = 0;
-            chordVoicing.forEach(note => {
-                const div = document.createElement('div');
-                const label = document.createElement('label');
-                const checkbox = document.createElement('input');
-                const playButton = document.createElement('button');
+            function prepareChord(chordVoicing) {
+                noteContainer.innerHTML = '';
+                layerContainer.innerHTML = '';
+                let i = 0;
+                chordVoicing.forEach(note => {
+                    //let noteDiv = document.createElement('div');
+                    //noteDiv.class = "note";
+                    //let label = document.createElement('label');
+                    let checkbox = document.createElement('input');
 
-                checkbox.type = 'checkbox';
-                checkbox.value = note;
-                checkbox.checked = true;
-                checkbox.class = 'image-toggle';
+                    checkbox.type = 'checkbox';
+                    checkbox.value = note;
+                    checkbox.checked = true;
+                    checkbox.class = 'image-toggle';
 
-                label.innerHTML = intervals[note];
-                label.append(checkbox);
+                    //label.innerHTML = intervals[note];
+                    //noteDiv.append(checkbox);
+
+                    //div.appendChild(label);
+                    let noteDiv = document.createElement('div');
+                    noteDiv.id = i + "_png";
+                    noteDiv.className = 'note';
+                    i = i + 1;
+                    noteDiv.appendChild(checkbox)
+                    //noteDiv.appendChild(imgDiv)
+                    noteContainer.appendChild(noteDiv);
+                });
+                div = document.createElement('div');
+                label = document.createElement('label');
 
                 div.appendChild(label);
-                div.id = i + "_png";
-                i = i + 1;
-                noteContainer.appendChild(div);
-            });
-            div = document.createElement('div');
-            label = document.createElement('label');
-            playButton = document.createElement('button')
-            
-            playButton.id = 'play_chord';
-            playButton.innerHTML = 'Play';
-            playButton.addEventListener('click', playChord)
-            label.append(playButton);
+                div.id = "layered_png";
+                layerContainer.appendChild(div);
 
-            div.appendChild(label);
-            div.id = "layered_png";
-            noteContainer.appendChild(div);
-        };
-
-
-        function addNote() {
-            if (noteSelector.selectedIndex != 0) {
-                if (voicing != '') {
-                    voicing = voicing.join(',')
-                    voicing += ','
-                };
-                if (voicing == '') {root = noteSelector.value};
-
-                voicing += (noteSelector.value - root + 12)%12;
-                voicing = voicing.split(',');
-                prepareChord(voicing);
-                document.dispatchEvent(createChord);
+                div = document.createElement('div');
+                div.id = "combined_png";
+                layerContainer.appendChild(div);
             };
-        };
-        function resetCustom() {
-            noteContainer.innerHTML = '';
-            noteSelector.selectedIndex = 0;
-            voicing = ''
-        };
 
-        function toggleIntonation () {
 
-            if (isChordPlaying) {
-                chord_pitches = frequencies;
-                let length = chord_pitches.length;
-                let now = Tone.now();
-                for (let i = 0; i < length; i++) {
-                    synth.triggerRelease(chord_pitches.get(i), now);
-                    console.log('Triggering Release for ' + chord_pitches.get(i))
+            function addNote() {
+                if (noteSelector.selectedIndex != 0) {
+                    if (voicing != '') {
+                        voicing = voicing.join(',');
+                        voicing += ',';
+                    };
+                    if (voicing == '') {root = noteSelector.value};
+
+                    voicing += (noteSelector.value - root + 12)%12;
+                    voicing = voicing.split(',');
+                    prepareChord(voicing);
+                    document.dispatchEvent(createChord);
                 };
             };
 
-            pureIntonation = (pureIntonation + 1)%2;
-            if (chordSelector.selectedIndex != 1) {
-                voicing = chordSelector.value.split(',');
-                prepareChord(voicing);
-                document.dispatchEvent(createChord);
+
+            function resetCustom() {
+                noteContainer.innerHTML = '';
+                layerContainer.innerHTML = '';
+                noteSelector.selectedIndex = 0;
                 voicing = '';
             };
-            if (chordSelector.selectedIndex == 1) {
-                prepareChord(voicing);
-                document.dispatchEvent(createChord);
+
+
+            function toggleIntonation () {
+                if (isChordPlaying) {
+                    chord_pitches = frequencies;
+                    let length = chord_pitches.length;
+                    let now = Tone.now();
+                    for (let i = 0; i < length; i++) {
+                        synth.triggerRelease(chord_pitches.get(i), now);
+                        console.log('Triggering Release for ' + chord_pitches.get(i))
+                    };
+                };
+
+                pureIntonation = (pureIntonation + 1)%2;
+                if (chordSelector.selectedIndex != 1) {
+                    voicing = chordSelector.value.split(',');
+                    prepareChord(voicing);
+                    document.dispatchEvent(createChord);
+                    voicing = '';
+                };
+                if (chordSelector.selectedIndex == 1) {
+                    prepareChord(voicing);
+                    document.dispatchEvent(createChord);
+                };
+                
+                if (isChordPlaying) {
+                    chord_pitches = frequencies;
+                    let length = chord_pitches.length;
+                    let now = Tone.now();
+                    for (let i = 0; i < length; i++) {
+                        synth.triggerAttack(chord_pitches.get(i), now);
+                        console.log('Triggering Attack for ' + chord_pitches.get(i));
+                    };
+                };
+
             };
-            
-            if (isChordPlaying) {
+
+            var synth = new Tone.PolySynth(Tone.Synth).toDestination();
+            function playChord() {
+                Tone.start();
+                let now = Tone.now();
                 chord_pitches = frequencies;
                 let length = chord_pitches.length;
-                let now = Tone.now();
-                for (let i = 0; i < length; i++) {
-                    synth.triggerAttack(chord_pitches.get(i), now);
-                    console.log('Triggering Attack for ' + chord_pitches.get(i))
+
+                if (isChordPlaying) {
+                    isChordPlaying = false;
+                    for (let i = 0; i < length; i++) {
+                        synth.triggerRelease(chord_pitches.get(i), now);
+                        console.log('Triggering Release for ' + chord_pitches.get(i));
+                    };
+                } else if (!isChordPlaying) {
+                    isChordPlaying = true;
+                    for (let i = 0; i < length; i++) {
+                        synth.triggerAttack(chord_pitches.get(i), now);
+                        console.log('Triggering Attack for ' + chord_pitches.get(i));
+                    };
                 };
+                
             };
-
-        };
-
-        var synth = new Tone.PolySynth(Tone.Synth).toDestination();
-        function playChord() {
-            Tone.start();
-            let now = Tone.now();
-            chord_pitches = frequencies;
-            let length = chord_pitches.length;
-
-            if (isChordPlaying) {
-                isChordPlaying = false;
-                for (let i = 0; i < length; i++) {
-                    synth.triggerRelease(chord_pitches.get(i), now);
-                    console.log('Triggering Release for ' + chord_pitches.get(i))
-                };
-            } else if (!isChordPlaying) {
-                isChordPlaying = true;
-                for (let i = 0; i < length; i++) {
-                    synth.triggerAttack(chord_pitches.get(i), now);
-                    console.log('Triggering Attack for ' + chord_pitches.get(i))
-                };
-            };
-            
-        };
-
+        //});
     </script>
     <script type="py" src="./main.py"></script>
 </body>
