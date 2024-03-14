@@ -42,6 +42,7 @@ def generate_waveforms(event):
   chromatic_base_pitches = [16.35, 17.32, 18.35, 19.45, 20.60, 21.83, 23.12, 24.50, 25.96, 27.50, 29.14, 30.87]
   harmonic_ratios = [1/1, 16/15, 9/8, 6/5, 5/4, 4/3, 7/5, 3/2, 8/5, 5/3, 9/5, 15/8]
   adjustments = ['+0.0', '+11.95', '+4.12', '+15.07', '-13.71', '-2.38', '-17.31', '+1.77', '+13.29', '-15.81', '+17.14', '-12.03']
+  intervals = ['Tonic', 'Minor 2nd', 'Major 2nd', 'Minor 3rd', 'Major 3rd', 'Perfect 4th', 'Aug 4th / Dim 5th', 'Perfect 5th', 'Minor 6th', 'Major 6th', 'Minor 7th', 'Major 7th']
 
   chromatic_pitches = [pitch*2**4 for pitch in chromatic_base_pitches]
 
@@ -93,9 +94,9 @@ def generate_waveforms(event):
     plt.plot(t, y, color=colors[freq[0]])
 
     if pureIntonation == 1:
-      plt.title(f"{[chromatic_scale[((int(i)+root)%len(chromatic_scale))] for i in voicing][freq[0]]} | {round(freq[1], 2)}Hz | Intonation: {adjustments[voicing[freq[0]]%12]} Cents")
+      plt.title(f"{[intervals[((int(i))%len(intervals))] for i in voicing][freq[0]]} | {[chromatic_scale[((int(i)+root)%len(chromatic_scale))] for i in voicing][freq[0]]} | {round(freq[1], 2)}Hz | {adjustments[voicing[freq[0]]%12]} Cents")
     elif pureIntonation == 0:
-      plt.title(f"{[chromatic_scale[((int(i)+root)%len(chromatic_scale))] for i in voicing][freq[0]]} | {round(freq[1], 2)}Hz | Intonation: +0.0 Cents")
+      plt.title(f"{[voicing[((int(i)+root)%len(voicing))] for i in voicing][freq[0]]} | {[chromatic_scale[((int(i)+root)%len(chromatic_scale))] for i in voicing][freq[0]]} | {round(freq[1], 2)}Hz | +0.0 Cents")
     plt.ylim(-1.1, 1.1)
 
     plt.yticks([])
@@ -116,13 +117,14 @@ def generate_waveforms(event):
 
   plt.figure(figsize=(8, 2))
 
+  
   for freq in enumerate(frequencies):
-    y = np.sin(2 * np.pi * freq[1] * t + np.pi/2)
-    plt.plot(t, y, color=colors[freq[0]])
 
+    # Create layered plot
+    plt.plot(t, np.sin(2 * np.pi * freq[1] * t + np.pi/2), color=colors[freq[0]])
 
   plt.ylim(-1.1, 1.1)
-  plt.title(f'{chords[chord_type][0]} | {chromatic_scale[root]}{chords[chord_type][2]}')
+  plt.title(f'{chromatic_scale[root]} {chords[chord_type][0]} | Layered')
   plt.yticks([])
   plt.xticks([])
   #plt.grid(True)
@@ -130,15 +132,43 @@ def generate_waveforms(event):
 
   my_stream = io.BytesIO()
   plt.savefig(my_stream, transparent=True)
-
+  
 
   image_file = File.new([Uint8Array.new(my_stream.getvalue())], "layered.png", {type: "image/png"})
 
   new_image = document.createElement('img')
   new_image.src = window.URL.createObjectURL(image_file)
   document.getElementById("layered_png").appendChild(new_image)
+  
   plt.close()
 
+  plt.figure(figsize=(8, 2))
+  combined_wave = np.zeros_like(t)
+  for freq in enumerate(frequencies):
+    # Create additive plot
+    combined_wave += np.sin(2 * np.pi * freq[1] * t + np.pi/2)
+  max_value = np.max(np.abs(combined_wave))
+  normalized_wave = combined_wave / max_value if max_value != 0 else combined_wave
+  plt.plot(t, normalized_wave, 'black')
+
+  plt.ylim(-1.1, 1.1)
+  plt.title(f'{chromatic_scale[root]} {chords[chord_type][0]} | Combined')
+  plt.yticks([])
+  plt.xticks([])
+  #plt.grid(True)
+  plt.tight_layout()
+
+  my_stream = io.BytesIO()
+  plt.savefig(my_stream, transparent=True)
+  
+
+  image_file = File.new([Uint8Array.new(my_stream.getvalue())], "combined.png", {type: "image/png"})
+
+  new_image = document.createElement('img')
+  new_image.src = window.URL.createObjectURL(image_file)
+  document.getElementById("combined_png").appendChild(new_image)
+  
+  plt.close()
 
 def setup():
   generate_waveforms_proxy = create_proxy(generate_waveforms)
