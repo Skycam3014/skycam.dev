@@ -19,7 +19,7 @@ h1 {
 }
 
 p.nav-links a {
-		margin-left:1em;
+		margin-left:5ch;
 		text-decoration: none;
 		font-size:20px;
 }
@@ -63,7 +63,7 @@ p.nav-links a:active { color: #000000; }
 }
 
 .page_content p {
-	text-indent: 2em;
+	text-indent: 4ch;
 	margin:0;
 	margin-bottom:1em;
 }
