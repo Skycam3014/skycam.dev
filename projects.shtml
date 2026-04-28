@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="ISO-8859-1">
+
+	<head>
+		<link href="/common.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+
+		<title> Sky's Homepage</title>
+
+	</head>
+
+	<body>
+		<!--#include virtual="/navbar.html" -->
+
+		<h1 class="page_title">Projects (Coming Soon!)</h1>
+		<hr class="title_bar">
+
+		<div class="page_content">
+
+			<p>I'll have a list of my current, past, & future projects here when I get around to it.</p>
+			
+		</div>
+
+	</body>
+</html>
