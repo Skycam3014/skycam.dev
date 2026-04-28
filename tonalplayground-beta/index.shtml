@@ -4,24 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+    <link rel="stylesheet" href="pyscript.css" />
 
-
-    <link rel="stylesheet" href="/pyscript.css" />
-    <script defer src="/pyscript.js"></script>
-	
+    <script defer src="pyscript.js"></script>
     <script src="http://unpkg.com/tone"></script>
-
-	<link href="/common.css" rel="stylesheet" type="text/css">
+    <link href="/common.css" rel="stylesheet" type="text/css">
 
 
     <py-config>
         packages = ["numpy", "matplotlib"]
     </py-config>
 
-
-
     <title>Tonal Playground</title>
+
     <style>
         .container {
             display: flex;
