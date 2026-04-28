@@ -28,10 +28,9 @@ p.nav-links a {
 	font-size:20px;
 }
 
-p.nav-links a:link { color: #6d0096; }
-p.nav-links a:visited {	color: #6d0096;	}
-p.nav-links a:hover { color: #856287; }
-p.nav-links a:active { color: #000000; }
+a:link { color: #6d0096; }
+a:visited {	color: #6d0096;	}
+a:hover { color: #856287; }
 
 .logo {
 	float:left;
