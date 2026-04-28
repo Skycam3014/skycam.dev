@@ -24,5 +24,11 @@ body {
 	margin-top:45px;
 	margin-left:5em;
 	width:75%;
-	line-height:1.5;
+}
+.page_content p {
+	text-indent: 2em;
+	margin:0;
+}
+.page_content p+p {
+	margin-top:1ex;
 }
