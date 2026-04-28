@@ -14,5 +14,14 @@
 	<body>
 		<!--#include virtual="/navbar.html" -->
 
+		<h1 class="page_title">Sky's Homepage</h1>
+		<hr class="title_bar">
+
+		<div class="page_content">
+			<p>Welcome to my little corner of the internet.</p>
+
+			<p>This is where I host most of my projects and experiments, I'm working on a refactor right now, but feel free to explore anyways. You can also find more of my stuff on <a href="https://github.com/skycam3014">my github</a>.</p>
+		</div>
+
 	</body>
 </html>

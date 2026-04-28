@@ -11,3 +11,18 @@ body {
 	background-color:#856287;
 
 }
+
+.page_title {
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:15px;
+	margin-bottom:15px;
+	text-align:center;
+}
+
+.page_content {
+	margin-top:45px;
+	margin-left:5em;
+	width:75%;
+	line-height:1.5;
+}
