@@ -31,21 +31,19 @@ p.nav-links a:active { color: #000000; }
 
 .logo {
 	float:left;
-	margin-left:10px;
+	margin-left:1em;
 }
 
 .logo img {
-	width:97px;
-	height:42px;
-	padding-top:28%;
-	padding-left:10px;
+	width:5.75em;
+	height:2.75em;
+	padding-top:1.75em;
+	padding-left:.75em;
 }
 
 .nav {
-	height:50px;
-	width:80%;
-	padding-top:40px;
-	padding-left:140px
+	height:3em;
+	padding-top:2.5em;
 }
 
 .page_title {
