@@ -6,6 +6,11 @@ body {
 
 }
 
+h1 {
+	font-size: 24;
+	margin-bottom:1em;
+}
+
 .title_bar {
 	height:2px;
 	border-width:0;
@@ -29,7 +34,8 @@ body {
 .page_content p {
 	text-indent: 2em;
 	margin:0;
+	margin-bottom:1em;
 }
 .page_content p+p {
-	margin-top:1ex;
+	margin-top:1em;
 }
