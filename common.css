@@ -18,6 +18,36 @@ h1 {
 
 }
 
+p.nav-links a {
+		margin-left:1em;
+		text-decoration: none;
+		font-size:20px;
+}
+
+p.nav-links a:link { color: #6d0096; }
+p.nav-links a:visited {	color: #6d0096;	}
+p.nav-links a:hover { color: #856287; }
+p.nav-links a:active { color: #000000; }
+
+.logo {
+	float:left;
+	margin-left:10px;
+}
+
+.logo img {
+	width:97px;
+	height:42px;
+	padding-top:28%;
+	padding-left:10px;
+}
+
+.nav {
+	height:50px;
+	width:80%;
+	padding-top:40px;
+	padding-left:140px
+}
+
 .page_title {
 	margin-left:auto;
 	margin-right:auto;
@@ -31,11 +61,10 @@ h1 {
 	margin-left:5em;
 	width:75%;
 }
+
 .page_content p {
 	text-indent: 2em;
 	margin:0;
 	margin-bottom:1em;
 }
-.page_content p+p {
-	margin-top:1em;
-}
+
