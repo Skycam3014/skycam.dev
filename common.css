@@ -19,6 +19,7 @@ h1 {
 }
 
 .nav-links {
+	float:left;
 	margin-left:2ch;
 }
 
