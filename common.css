@@ -18,6 +18,10 @@ h1 {
 
 }
 
+.nav-links {
+	margin-left:2ch;
+}
+
 p.nav-links a {
 	margin-left:2ch;
 	text-decoration: none;
