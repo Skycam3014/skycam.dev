@@ -14,7 +14,7 @@ h1 {
 .title_bar {
 	height:2px;
 	border-width:0;
-	background-color:#856287;
+	background-color:#cdcdff;
 
 }
 
@@ -29,9 +29,9 @@ p.nav-links a {
 	font-size:20px;
 }
 
-p.nav-links a:link { color: #6d0096; }
-p.nav-links a:visited {	color: #6d0096;	}
-p.nav-links a:hover { color: #856287; }
+p.nav-links a:link { color: #cdcdff; }
+p.nav-links a:visited {	color: #cdcdff;	}
+p.nav-links a:hover { color: #cdcdff; }
 p.nav-links a:active { color: #000000; }
 
 .logo {
