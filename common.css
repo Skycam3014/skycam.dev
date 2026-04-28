@@ -19,9 +19,9 @@ h1 {
 }
 
 p.nav-links a {
-		margin-left:5ch;
-		text-decoration: none;
-		font-size:20px;
+	margin-left:2ch;
+	text-decoration: none;
+	font-size:20px;
 }
 
 p.nav-links a:link { color: #6d0096; }
