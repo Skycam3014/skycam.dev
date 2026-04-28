@@ -24,12 +24,15 @@ h1 {
 
 p.nav-links a {
 	margin-left:2ch;
-	text-decoration: none;
 	font-size:20px;
 }
 
+a {
+	text-decoration: none;
+}
+
 a:link { color: #6d0096; }
-a:visited {	color: #6d0096;	}
+a:visited { color: #6d0096; }
 a:hover { color: #856287; }
 
 .logo {
