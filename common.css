@@ -45,17 +45,11 @@ a:hover { text-decoration:underline;; }
 .logo {
 	float:left;
 	margin-left:1em;
-}
-
-.logo img {
-	width:5.75em;
-	height:2.75em;
-	padding-top:1.75em;
-	padding-left:.75em;
+	margin-top:1.75em;
+	margin-left:.75em;
 }
 
 .logo-text p {
-	font-family: "Open Sans";
 	text-align:center;
 	font-size: 30px;
 }
