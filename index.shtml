@@ -27,6 +27,13 @@
 			<p>Check out <a href="https://github.com/skycam3014">my github</a>!</p>
 			<p> I'm also working on building a synthesizer on top of <a href="https://www.desmos.com/">Desmos</a> when I have extra time. You can see the most recent version here <a href="https://www.desmos.com/calculator/ktontqdmym">desmos.com/calculator/ktontqdmym</a> (hit the unmute button and play the first item). If/when I eventually wrap up attack and decay, I'll probably throw together a midi converter and blog post style write-up.</p>
 			<p>An older unfinished project of mine but neat nonetheless: <a href="/tonalplayground-beta/">Tonal Playground</a>. Layer notes & chords with frequency visualizations and toggle justified intonation. Python was not a fantastic choice for web frontend but I started out writing a cli tool and only lazily ported over.</p>
+
+			<!-- Prevent content from flowing under footer -->
+			<br>
+			<br>
+			<br>
+			<br>
+
 		</div>
 
 		<footer>
