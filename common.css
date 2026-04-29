@@ -99,10 +99,6 @@ footer p {
 	padding-left:1em;
 }
 
-footer p:last-child {
-	padding-bottom:1em;
-}.
-
 @media (max-width: 512px) {
 	.header {
 		padding-bottom:2em;
