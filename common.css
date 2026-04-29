@@ -47,11 +47,13 @@ a:hover { text-decoration:underline;; }
 	margin-left:1em;
 	margin-top:1.75em;
 	margin-left:.75em;
+	text-align:center;
 }
 
 .logo-text p {
-	text-align:center;
 	font-size: 30px;
+	font-weight: bold;
+	color: var(--hl-clr);
 }
 
 .nav {
