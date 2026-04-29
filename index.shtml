@@ -29,5 +29,9 @@
 			<p>An older unfinished project of mine but neat nonetheless: <a href="/tonalplayground-beta/">Tonal Playground</a>. Layer notes & chords with frequency visualizations and toggle justified intonation. Python was not a fantastic choice for web frontend but I started out writing a cli tool and only lazily ported over.</p>
 		</div>
 
+		<footer>
+			<hr class="title_bar">
+		</footer>
+
 	</body>
 </html>
