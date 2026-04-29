@@ -83,8 +83,13 @@ a:hover { text-decoration:underline;; }
 
 footer {
 	position:absolute;
-	height: 5em;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	height:5em;
+	bottom:0;
+	left:0;
+	right:0;
+}
+
+footer p {
+	padding-top:.5em;
+	padding-left:1em;
 }
