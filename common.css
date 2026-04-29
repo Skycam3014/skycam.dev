@@ -4,8 +4,6 @@ body, div, span, h1, h2, h3, h4, h5, h6, p, td { margin:0; padding:0; border:0; 
 	--bg-clr:#eedddd;
 	--hl-clr:#512DA8;
 	--ll-clr:#BDBDBD;
-
-	--footer-height:4em;
 }
 
 body {
@@ -13,8 +11,7 @@ body {
 	font-family:"Helvetica", sans-serif;
 	font-size:16px;
 
-	padding-bottom:var(--footer-height);
-	min-height: 92vh;
+	min-height: 100vh;
 	position: relative;
 }
 
@@ -86,7 +83,7 @@ a:hover { text-decoration:underline;; }
 
 footer {
 	position:absolute;
-    	height: var(--footer-height);
+    	height: 4em;
 	bottom: 0;
 	left: 0;
 	right: 0;
