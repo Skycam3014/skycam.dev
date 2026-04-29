@@ -60,6 +60,7 @@
 
 <body>
 	<!--#include virtual="/header.html" -->
+	<hr class="title_bar">
 	<h1 class="page_title">Tonal Playground</h1>
 	<hr class="title_bar">
 
