@@ -1,6 +1,13 @@
 body, div, span, h1, h2, h3, h4, h5, h6, p, td { margin: 0; padding: 0; border: 0; outline: 0; }
+
+:root {
+	--bg-clr: #eedddd;
+	--hl-clr: #512DA8;
+	--ll-clr: #BDBDBD;
+}
+
 body {
-	background: #ffffdd;
+	background: var(--bg-clr);
 	font-family: "Helvetica", sans-serif;
 	font-size:16px;
 
@@ -14,7 +21,7 @@ h1 {
 .title_bar {
 	height:2px;
 	border-width:0;
-	background-color:#6d0096;
+	background-color:var(--hl-clr);
 
 }
 
@@ -32,9 +39,9 @@ a {
 	text-decoration: none;
 }
 
-a:link { color: #6d0096; }
-a:visited { color: #6d0096; }
-a:hover { color: #856287; }
+a:link { color: var(--hl-clr); }
+a:visited { color: var(--hl-clr); }
+a:hover { text-decoration:underline;; }
 
 .logo {
 	float:left;
