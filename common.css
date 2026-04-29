@@ -1,19 +1,19 @@
-body, div, span, h1, h2, h3, h4, h5, h6, p, td { margin: 0; padding: 0; border: 0; outline: 0; }
+body, div, span, h1, h2, h3, h4, h5, h6, p, td { margin:0; padding:0; border:0; outline:0; }
 
 :root {
-	--bg-clr: #eedddd;
-	--hl-clr: #512DA8;
-	--ll-clr: #BDBDBD;
+	--bg-clr:#eedddd;
+	--hl-clr:#512DA8;
+	--ll-clr:#BDBDBD;
 }
 
 body {
-	background: var(--bg-clr);
-	font-family: "Helvetica", sans-serif;
+	background:var(--bg-clr);
+	font-family:"Helvetica", sans-serif;
 	font-size:16px;
 }
 
 h1 {
-	font-size: 24px;
+	font-size:24px;
 	margin-bottom:.5em;
 }
 
@@ -35,25 +35,22 @@ p.nav-links a {
 }
 
 a {
-	text-decoration: none;
+	text-decoration:none;
 }
 
-a:link { color: var(--hl-clr); }
-a:visited { color: var(--hl-clr); }
+a:link { color:var(--hl-clr); }
+a:visited { color:var(--hl-clr); }
 a:hover { text-decoration:underline;; }
 
 .logo {
 	float:left;
 	margin-left:1em;
-	margin-top:1.75em;
-	margin-left:.75em;
+	margin-top:1.1em;
+	margin-left:1.25em;
 	text-align:center;
-}
-
-.logo-text p {
-	font-size: 30px;
-	font-weight: bold;
-	color: var(--hl-clr);
+	font-size:22px;
+	font-weight:bold;
+	color:var(--hl-clr);
 }
 
 .nav {
@@ -76,7 +73,7 @@ a:hover { text-decoration:underline;; }
 }
 
 .page_content p {
-	text-indent: 4ch;
+	text-indent:4ch;
 	margin:0;
 	margin-bottom:1em;
 }
