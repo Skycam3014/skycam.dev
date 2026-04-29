@@ -60,7 +60,7 @@ a:hover { text-decoration:underline;; }
 	color:var(--hl-clr);
 }
 
-.nav {
+.nav-bar {
 	height:3em;
 	padding-top:2.5em;
 }

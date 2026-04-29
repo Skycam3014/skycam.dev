@@ -10,8 +10,9 @@
 	</head>
 
 	<body>
-		<!--#include virtual="/navbar.html" -->
+		<!--#include virtual="/header.html" -->
 
+		<hr class="title_bar">
 		<h1 class="page_title">Sky's Homepage</h1>
 		<hr class="title_bar">
 

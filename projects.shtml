@@ -11,7 +11,7 @@
 	</head>
 
 	<body>
-		<!--#include virtual="/navbar.html" -->
+		<!--#include virtual="/header.html" -->
 
 		<h1 class="page_title">Projects (Coming Soon!)</h1>
 		<hr class="title_bar">
