@@ -98,3 +98,24 @@ footer p {
 	padding-top:.5em;
 	padding-left:1em;
 }
+
+@media (max-width: 512px) {
+	.header {
+		padding-bottom:2em;
+	}
+
+	.nav-bar {
+		padding-top:1em;
+	}
+
+	.nav-links {
+		width: 1ch;
+		line-height:1.25;
+	}
+
+	.page_content {
+		margin-left:2em;
+		width:85%;
+	}
+}
+
