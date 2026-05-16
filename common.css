@@ -103,11 +103,6 @@ footer p {
 	padding-left:1em;
 }
 
-footer .tags {
-	float:right;
-	padding-right:1em;
-}
-
 @media (max-width: 512px) {
 	.header {
 		padding-bottom:2em;
