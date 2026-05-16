@@ -22,8 +22,18 @@
 			<p>Welcome to my little corner of the internet!</p>
 			
 			<h1>About</h1>
-			<p>This is where I host most of my projects and experiments, I'm working on a refactor right now and there's more coming soon, but feel free to explore anyways.</p>
-
+			<p>This is where I host most of my projects and experiments, I'm working on a refactor right now and there's more coming soon, but feel free to explore anyways. With exceptions for a few individual projects, the whole site is validated HTML & CSS.</p>
+			<p>
+			<a href="https://jigsaw.w3.org/css-validator/">
+				<img style="width:88px;height:31px"
+				src="/assets/valid-css.png" alt="Valid CSS!"></a>
+			<a href="https://validator.w3.org/">
+				<img style="width:88px;height:31px"
+				src="/assets/valid-xhtml10.png" alt="Valid HTML!"></a>
+			<a href="https://www.anybrowser.org/campaign/">
+				<img style="width:88px;height:31px"
+				src="/assets/anybrowser.png" alt="Viewable with Any Browser!"></a>
+			</p>
 			<h1>Stuff I'm working on right now</h1>
 			<p>Check out <a href="https://github.com/skycam3014">my github</a>!</p>
 			<h2>Desmos Synth</h2>
