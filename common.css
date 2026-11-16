@@ -1,18 +1,12 @@
 :root {
-		--bg-clr:#eedddd;
-		--hl-clr:#512DA8;
-		--ll-clr:#ff0000;
-		--tx-clr:#000000;
+	--bg-clr:light-dark(#eedddd, #36343d);
+	--hl-clr:light-dark(#512DA8, #8866ff);
+	--ll-clr:light-dark(#ff0000, #ff0000);
+	--tx-clr:light-dark(#000000, #dedede);
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--bg-clr:#36343d;
-		--hl-clr:#8866ff;
-		--ll-clr:#ff0000;
-		--tx-clr:#dedede;
-	}
-
+:root:has(#theme-toggle:checked) {
+	color-scheme: dark;
 }
 
 body {
@@ -40,6 +34,50 @@ p {
 	margin:0;
 }
 
+.header {
+	overflow: hidden;
+}
+
+.logo {
+	float:left;
+	margin-top:1.1em;
+	margin-left:1.25em;
+	text-align:center;
+	font-size:22px;
+	font-weight:bold;
+	color:var(--hl-clr);
+}
+
+.nav-bar {
+	height:3em;
+	padding-top:2.5em;
+	float: left;
+}
+
+#theme-toggle {
+	appearance: none;
+	cursor: pointer;
+	float: right;
+	width: 4em;
+	height: 4em;
+	text-align: center;
+	line-height: 4em;
+	margin-top: 1.6em;
+	margin-right: 2em;
+}
+
+#theme-toggle::after {
+	content: "☀";
+	font-size: 2em;
+	color: var(--hl-clr);
+}
+
+#theme-toggle:checked:after {
+	content: "☾";
+	font-size: 2em;
+	color: var(--hl-clr);
+}
+
 .title_bar {
 	height:2px;
 	border-width:0;
@@ -64,22 +102,6 @@ a {
 a:link { color:var(--hl-clr); }
 a:visited { color:var(--hl-clr); }
 a:hover { text-decoration:underline;; }
-
-.logo {
-	float:left;
-	margin-left:1em;
-	margin-top:1.1em;
-	margin-left:1.25em;
-	text-align:center;
-	font-size:22px;
-	font-weight:bold;
-	color:var(--hl-clr);
-}
-
-.nav-bar {
-	height:3em;
-	padding-top:2.5em;
-}
 
 .page_title {
 	margin-left:auto;
