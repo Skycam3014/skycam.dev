@@ -1,13 +1,25 @@
 :root {
-	--bg-clr:#eedddd;
-	--hl-clr:#512DA8;
-	--ll-clr:#BDBDBD;
+		--bg-clr:#eedddd;
+		--hl-clr:#512DA8;
+		--ll-clr:#ff0000;
+		--tx-clr:#000000;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg-clr:#36343d;
+		--hl-clr:#8866ff;
+		--ll-clr:#ff0000;
+		--tx-clr:#dedede;
+	}
+
 }
 
 body {
 	background:var(--bg-clr);
 	font-family:"Helvetica", sans-serif;
 	font-size:16px;
+	color:var(--tx-clr);
 
 	margin:0;
 

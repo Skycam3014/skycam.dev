@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="/common.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+
+		<title>Title</title>
+
+	</head>
+
+	<body>
+		<!--#include virtual="/header.html" -->
+
+		<hr class="title_bar">
+		<h1 class="page_title">Title</h1>
+		<hr class="title_bar">
+
+		<div class="page_content">
+
+			<p>Content</p>
+			
+		</div>
+
+		<!--#include virtual="/footer.html" -->
+
+	</body>
+</html>
